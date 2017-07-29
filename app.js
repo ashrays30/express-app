@@ -18,6 +18,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(cors({credentials: true, origin: true}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,16 +35,16 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.use(cors());
+
 
 // Connect to Mongo on start
-db.connect('mongodb://localhost:27017/assignment', function(err) {
+db.connect('mongodb://ashray:sanu98351@52.33.151.154:27017/assignment', function(err) {
   if (err) {
     console.log('Unable to connect to Mongo.')
     process.exit(1)
   } else {
     app.listen(9000, function() {
-      console.log('Listening on port 3000...')
+      console.log('Listening on port 9000...')
     })
   }
 })
