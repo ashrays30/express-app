@@ -1,4 +1,5 @@
 var db = require('../db');
+var ObjectId = require('mongodb').ObjectID;
 
 exports.saveBlogs = function(data) {
     console.log(data);
@@ -26,6 +27,22 @@ exports.getBlogs = function(data) {
     var collection = db.get().collection('blogs');
     return new Promise(function(resolve, rejects){
         collection.find({}).toArray(function(err, docs){
+            if(err){
+                rejects(err);
+                console.log(err);
+            }else{
+                resolve(docs);
+            }
+        });
+    });
+    
+    
+}
+
+exports.getBlogsById = function(data) {
+    var collection = db.get().collection('blogs');
+    return new Promise(function(resolve, rejects){
+        collection.findOne({"_id": new ObjectId(data.blogId)}, function(err, docs){
             if(err){
                 rejects(err);
                 console.log(err);

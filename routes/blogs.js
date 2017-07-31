@@ -28,4 +28,11 @@ router.get('/getPosts', function(req, res, next) {
     
 });
 
+router.post('/getBlogsById', function(req, res, next) {
+  blogController.getBlogsById(req.body).then(function(response){
+      res.send(response);
+  });
+    
+});
+
 module.exports = router;
